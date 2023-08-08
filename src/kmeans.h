@@ -12,8 +12,8 @@
 
 
 /* macros ------------------------------------------------ */
-#define MAX_ITER 300
-#define DIFF_THRESHOLD 1e-8
+#define KM_MAX_ITER 300
+#define KM_DIFF_THRESHOLD 1e-8
 
 /* typedefs, structs, unions, and enums ------------------ */
 typedef struct {
