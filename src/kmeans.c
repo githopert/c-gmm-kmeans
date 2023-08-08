@@ -12,14 +12,17 @@ KM_init(KM_Model* model, size_t cluster_num, const Data* data)
 void
 KM_fit(KM_Model* model, const Data* data)
 {
-        double *new_centroids;
-        size_t *nums;
+        double new_centroids[model->cluster_num];
+        size_t nums[model->cluster_num];
         double diff;
         size_t label, iter;
 
 
-        nums = (size_t*)calloc(model->cluster_num, sizeof(size_t));
-        new_centroids = (double*)calloc(model->cluster_num, sizeof(size_t));
+        for (size_t n = 0; n < model->cluster_num; ++n) {
+                new_centroids[n] = 0;
+                nums[n] = 0;
+        }
+
         iter = 1;
 
         while (1) {
@@ -44,23 +47,18 @@ KM_fit(KM_Model* model, const Data* data)
                         break;
                 }
 
-                model->centroids[0] = new_centroids[0];
-                model->centroids[1] = new_centroids[1];
-                model->centroids[2] = new_centroids[2];
+                for (size_t k = 0; k < model->cluster_num; ++k) {
+                        model->centroids[k] = new_centroids[k];
+                }
 
-                new_centroids[0] = 0;
-                new_centroids[1] = 0;
-                new_centroids[2] = 0;
-                
-                nums[0] = 0;
-                nums[1] = 0;
-                nums[2] = 0;
+                for (size_t n = 0; n < model->cluster_num; ++n) {
+                        new_centroids[n] = 0;
+                        nums[n] = 0;
+                }
 
                 iter++;
 
         }
-
-        free(nums);
 }
 
 void
