@@ -37,3 +37,13 @@ for 1D data in C99.
 ## Screenshot
 
 ![example in Windows](example.jpg)
+
+## References
+
+1. Deisenroth M.P., Faisal A.A., Ong C.S.
+   *Mathematics for Machine Learning*.
+   (2020)
+2. Bishop C.M.
+   *Pattern Recognition and Machine Learning*.
+   (2006)
+
