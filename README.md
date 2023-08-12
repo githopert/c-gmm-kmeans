@@ -1,6 +1,7 @@
-# K-Means++ in C
+# Gaussian Mixture Models and K-Means++ in C
 
-This is an implementation of the K-Means++ algorithm for 1D data in C99.
+This is an implementation of the GMM and K-Means++ algorithms
+for 1D data in C99.
 
 
 ## Build the program
@@ -28,14 +29,10 @@ This is an implementation of the K-Means++ algorithm for 1D data in C99.
 
 ## Usage
 
-1. Linux:
-    ```
-    ./kmeans file_path cluster_num
-    ```
-2. Windows:
-    ```
-    kmeans.exe file_path cluster_num
-    ```
+```
+./kmeans csv_file_path cluster_num
+./gmm csv_file_path cluster_num
+```
 
 ## Screenshot
 
