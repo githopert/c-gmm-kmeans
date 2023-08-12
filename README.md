@@ -36,4 +36,4 @@ for 1D data in C99.
 
 ## Screenshot
 
-![example in Windows](screenshot.jpg)
+![example in Windows](example.jpg)
