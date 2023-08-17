@@ -12,8 +12,8 @@
 
 
 /* macros ------------------------------------------------ */
-#define MAX_ITER 300
-#define DIFF_THRESHOLD 1e-8
+#define KM_MAX_ITER  300
+#define KM_TOLERANCE 1e-4
 
 /* typedefs, structs, unions, and enums ------------------ */
 typedef struct {
@@ -26,12 +26,13 @@ typedef struct {
 /* function declarations --------------------------------- */
 void KM_init(KM_Model* model, size_t cluster_num, const Data* data);
 void KM_fit(KM_Model* model, const Data* data);
+size_t* KM_cluster(const KM_Model* model, const Data* data);
 void KM_free(KM_Model* model);
 void KM_print(const KM_Model* model);
 
 /* helper functions */
 static double* KM_init_centroids(size_t cluster_num, const Data* data);
-static size_t KM_classify(const KM_Model* model, double point);
+static size_t KM_classify_point(const KM_Model* model, double point);
 static double KM_calc_diff(const double* old_centroids,
                            const double* new_centroids,
                            size_t cluster_num);

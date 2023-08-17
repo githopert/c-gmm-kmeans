@@ -28,7 +28,7 @@ KM_fit(KM_Model* model, const Data* data)
         while (1) {
 
                 for (size_t i = 0; i < data->length; ++i) {
-                        label = KM_classify(model, data->items[i]);
+                        label = KM_classify_point(model, data->items[i]);
 
                         new_centroids[label] += data->items[i];
                         nums[label] += 1;
@@ -43,7 +43,7 @@ KM_fit(KM_Model* model, const Data* data)
                                     new_centroids,
                                     model->cluster_num);
 
-                if (iter > MAX_ITER || diff < DIFF_THRESHOLD) {
+                if (iter > KM_MAX_ITER || diff < KM_TOLERANCE) {
                         break;
                 }
 
@@ -59,6 +59,22 @@ KM_fit(KM_Model* model, const Data* data)
                 iter++;
 
         }
+}
+
+
+size_t*
+KM_cluster(const KM_Model* model, const Data* data)
+{
+        size_t* labels;
+
+
+        labels = (size_t*)calloc(data->length, sizeof(size_t));
+
+        for (size_t dt = 0; dt < data->length; ++dt) {
+                labels[dt] = KM_classify_point(model, data->items[dt]);
+        }
+
+        return labels;
 }
 
 void
@@ -125,7 +141,7 @@ KM_init_centroids(size_t cluster_num, const Data* data)
 }
 
 static size_t
-KM_classify(const KM_Model* model, double point)
+KM_classify_point(const KM_Model* model, double point)
 {
         double dist, min_dist;
         size_t label;

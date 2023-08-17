@@ -25,8 +25,15 @@ main(int argc, char** argv)
         cluster_num = (size_t)atoi(argv[2]);
 
         GMM_init(model, cluster_num, data);
+        GMM_print(model);
+
         GMM_fit(model, data);
         GMM_print(model);
+
+        printf(
+                "OPT LOG-LIKELIHOOD: %lf\n",
+                GMM_calc_loglikelihood(model, data)
+        );
         
         D_free(data);
         GMM_free(model);

@@ -17,6 +17,7 @@ main(int argc, char** argv)
 
         Data* data;
         KM_Model* model;
+        size_t* labels;
         size_t cluster_num;
 
 
@@ -28,8 +29,11 @@ main(int argc, char** argv)
         KM_fit(model, data);
         KM_print(model);
 
+        labels = KM_cluster(model, data);
+
         D_free(data);
         KM_free(model);
+        free(labels);
 
         return 0;
 }
